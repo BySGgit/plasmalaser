@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.section {
+    width: 100%;
+    @apply lg:px-[75px] px-[15px]
+}
+h2{
+    @apply leading-tight font-semibold text-main-darkblue;
+    line-height: 50px;
+}
+p{
+    @apply leading-tight text-main-darkblue font-[300] text-base leading-6 mb-4;
+}
+hr{
+    @apply border-t-4 border-main w-32 my-4
+}
+.plate {
+    @apply bg-white border overflow-hidden rounded-o border-gray-200;
+    .plateinfo,.plateimage{
+        @apply w-full h-1/2 relative;
+    }
+    .plateimage svg{
+        @apply right-0
+    }
+    &:nth-child(1), &:nth-child(5) {
+        @apply col-span-2 flex;
+        .plateinfo, .plateimage{
+            @apply w-1/2 h-full;
+        }
+    }
+    &:nth-child(2) {
+        @apply row-span-2 flex flex-col;
+        .plateinfo, .plateimage{
+            @apply w-full h-1/2
+        }
+    }
+    &:hover{
+        @apply border-main
+    }
+}
+.button, .button-cover, .button-white{
+    @apply flex rounded p-2 pr-2.5 pl-[20px] h-10 gap-2 w-[max-content];
+    svg{
+        @apply w-full h-full
+    }
+}
+.button-cover{
+    @apply bg-main text-white;
+    svg{
+        @apply stroke-white
+    }
+    &:hover{
+        @apply text-main border border-main;
+        svg{
+            @apply stroke-main
+        }
+    }
+}
+.button-white{
+    @apply text-white border border-white;
+    svg{
+        @apply stroke-white
+    }
+}
+.button{
+    @apply text-main border border-main;
+    svg{
+        @apply stroke-main
+    }
+    &:hover{
+        @apply bg-main text-white;
+        svg{
+            @apply stroke-white
+        }
+    }
+}
+.tablist{
+    @apply w-2.5 h-2.5 border border-main;
+    &.active {
+        @apply bg-main border-none;
+    }
+}
+.arrow, .arrow-cover{
+    @apply flex shrink-0 relative items-center cursor-pointer justify-center border rounded-[2px] h-[50px] w-[50px];
+    span{
+        @apply absolute m-auto w-[10px] h-[10px] border-l-2 border-t-2 -rotate-45;
+
+        &.next{
+            @apply rotate-[135deg];
+
+        }
+    }
+}
+.arrow{
+    @apply bg-white border border-gray-200;
+    span{
+        @apply border-main-text;
+    }
+}
+.arrow-cover{
+    @apply bg-main border-none;
+}
