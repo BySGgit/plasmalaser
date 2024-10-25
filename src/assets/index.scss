@@ -97,7 +97,19 @@ hr{
     span{
         @apply border-main-text;
     }
+    &:hover{
+        @apply bg-main text-white;
+        span{
+            @apply border-white
+        }
+    }
 }
 .arrow-cover{
     @apply bg-main border-none;
+    &:hover{
+        @apply bg-white text-main-text;
+        span{
+            @apply border-main
+        }
+    }
 }

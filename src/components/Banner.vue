@@ -1,11 +1,11 @@
 <template>
   <div class="section"><div class="bg-blue-100 rounded  mt-5 p-5 min-h-[450px] flex flex-col  items-center justify-center">
     <div class="flex  items-center justify-center overflow-hidden">
-      <div class="arrow-cover" @click="slider(false)">
+      <div class="arrow" @click="slider(false)">
         <span></span>
       </div>
       <div class="overflow-hidden"><div class="flex z-1 w-full transition-transform duration-[2s] ease-in-out" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-        <div class="w-full p-10 flex -lg:flex-col-reverse items-center justify-between shrink-0" v-for="(slide, index) in slides" :key="index">
+        <div class="w-full p-10 flex -lg:flex-col items-center justify-between shrink-0" v-for="(slide, index) in slides" :key="index">
           <div class="lg:w-1/2 z-10">
             <h2 class="text-orange-500 font-bold text-2xl mb-4">
               {{ slide.title }}
