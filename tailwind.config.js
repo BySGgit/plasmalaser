@@ -8,6 +8,7 @@ module.exports = {
         "main-darkblue": "#153049",
         "main-blue": "#304F6C",
         "main-text": "#24323F",
+        "main-gray" : "#F7F8FA"
       },
       fontFamily:{
         sans: ['Montserrat'],

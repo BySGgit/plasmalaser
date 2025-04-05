@@ -40,7 +40,7 @@
     <div class="section text-white mx-auto h-[110px] flex items-center justify-between gap-8">
       <!-- Логотип и описание -->
         <div class="flex items-center w-1/4 h-20 gap-5">
-          <img src="../assets/images/logo.svg" alt="Plasma Laser Logo" class="w-40">
+          <img src="/images/logo.svg" alt="Plasma Laser Logo" class="w-40">
           <h3 class="shrink-0 font-[200] w-1/2">Расходные материалы<br>для сварки и резки</h3>
         </div>
 
@@ -99,7 +99,7 @@
           <!-- Выпадающее меню -->
           <div
               v-if="dropdownOpen"
-              class="absolute mt-2 lg:w-56 w-[calc(100vw-45px)] bg-white rounded shadow-lg z-10"
+              class="absolute mt-2 lg:w-56 w-[calc(100vw-45px)] bg-white rounded shadow-lg z-1"
           >
             <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Плазменная резка</a>
             <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Лазерная резка</a>
@@ -112,13 +112,13 @@
         </div>
 
         <!-- Поле поиска -->
-        <div class="relative w-1/2">
+        <div class="relative w-1/2 -lg:w-full">
           <input
               type="text"
               placeholder="Введите артикул или деталь"
               class="w-full px-4 py-2 border border-gray-300 rounded-m focus:outline-none focus:ring-2 focus:ring-main"
           />
-          <button class="absolute right-2 top-2 text-main">
+          <button class="absolute right-2 top-0 bottom-0 m-auto text-main">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="w-5 h-5 text-main" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_409_1767)">
                 <path d="M8.04606 1C4.16097 1 1 4.16097 1 8.04606C1 11.9314 4.16097 15.0921 8.04606 15.0921C11.9314 15.0921 15.0921 11.9314 15.0921 8.04606C15.0921 4.16097 11.9314 1 8.04606 1ZM8.04606 13.7913C4.87816 13.7913 2.30081 11.214 2.30081 8.04609C2.30081 4.87819 4.87816 2.30081 8.04606 2.30081C11.214 2.30081 13.7913 4.87816 13.7913 8.04606C13.7913 11.214 11.214 13.7913 8.04606 13.7913Z" fill="#FF8304" stroke="#FF8304"/>

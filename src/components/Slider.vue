@@ -38,20 +38,20 @@ export default {
           title: 'Аппараты для лазерной сварки и очистки 4в1',
           description: 'Новый ассортимент уже в продаже!',
           buttonText: 'Перейти',
-          image: 'src/assets/images/74f9dd93e09ecc4c364f8f67d6544653.png' // Replace with actual image URL
+          image: '/images/74f9dd93e09ecc4c364f8f67d6544653.png' // Replace with actual image URL
         },
         // Add more slides here
         {
           title: 'Slide 2 Title',
           description: 'Slide 2 Description',
           buttonText: 'Learn More',
-          image: 'src/assets/images/74f9dd93e09ecc4c364f8f67d6544653.png' // Replace with actual image URL
+          image: '/images/74f9dd93e09ecc4c364f8f67d6544653.png' // Replace with actual image URL
         },
         {
           title: 'Slide 3 Title',
           description: 'Slide 3 Description',
           buttonText: 'Get Started',
-          image: 'src/assets/images/74f9dd93e09ecc4c364f8f67d6544653.png' // Replace with actual image URL
+          image: '/images/74f9dd93e09ecc4c364f8f67d6544653.png' // Replace with actual image URL
         }
       ],
     };

@@ -1,147 +1,272 @@
 <template>
-  <footer class="bg-blue-900 text-white py-10">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-      <!-- Block with logo, contacts, payment acceptance, and developed by -->
-      <div>
-        <img src="" alt="Plasma Laser Logo" class="mb-4">
-        <p class="mb-2">+7(904)-642-21-01</p>
-        <p class="mb-2">n_yatsko@bk.ru</p>
-        <p class="mb-2">г. Санкт-Петербург, пр.Королева, д. 22 корп 1</p>
-        <div class="flex space-x-2 mt-4">
-          <img src="" alt="Visa" class="w-8">
-          <img src="" alt="Mir" class="w-8">
+  <footer class="section bg-main-darkblue">
+    <div class="flex flex-col">
+      <div class="flex gap-4 py-12">
+        <!-- Левая колонка - логотип, контакты, платежные системы, копирайт, разработчик -->
+        <div class="w-1/5 flex flex-col justify-between">
+          <div>
+            <img src="/images/logo.svg" alt="Plasma Laser" class="p-6" />
+            <div class="flex flex-col gap-5">
+              <div
+                v-for="(contact, index) in contacts"
+                :key="index"
+                class="flex gap-1 text-white text-[14px] font-bold"
+                :class="{ 'contact-address': contact.type === 'address' }"
+              >
+                <img
+                  v-for="icon in contact.icons"
+                  :key="icon"
+                  :src="`/images/${icon}.svg`"
+                  :alt="contact.iconAlt"
+                  class="contact-icon"
+                />
+                <component
+                  :is="contact.type"
+                  :href="contact.href"
+                  class="contact-link"
+                  >{{ contact.text }}</component
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-8">
+            <!-- Платежные системы -->
+            <div class="flex flex-col gap-1">
+              <p class="text-sm text-white">{{ paymentTitle }}</p>
+              <div class="flex gap-2">
+                <img
+                  v-for="method in paymentMethods"
+                  :key="method.id"
+                  :src="`/images/${method.icon}.svg`"
+                  :alt="method.name"
+                  class="bg-[#f4f6f933] p-2 rounded-[4px]"
+                />
+              </div>
+            </div>
+
+            <!-- Копирайт -->
+            <div class="text-xs text-[#67747F]">
+              <p class="copyright">{{ copyright }}</p>
+            </div>
+          </div>
+
+          <!-- Разработка -->
+          <div class="flex flex-col gap-1">
+            <p class="text-sm text-white">{{ developerText }}</p>
+            <img
+              :src="developerLogoPath"
+              :alt="developerName"
+              class="max-w-[150px]"
+            />
+          </div>
+        </div>
+        <div class="w-4/5 grid grid-cols-3 gap-x-4 gap-y-20">
+          <!-- Меню сайта -->
+          <div v-for="submenu in menu" class="flex flex-col">
+            <h3 class="text-[18px] font-bold text-white mb-4">
+              {{ submenu.title }}
+            </h3>
+            <div class="flex gap-4">
+              <ul
+                v-for="sub in submenu.items"
+                class="flex flex-col flex-1 gap-4"
+              >
+                <li v-for="item in sub" :key="item.id">
+                  <a
+                    :href="item.url"
+                    class="flex items-start text-white text-xs hover:text-main"
+                  >
+                    <div
+                      class="w-1 h-1 bg-main mt-1 mr-2 flex-shrink-0 rounded"
+                    ></div>
+                    {{ item.text }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- Block with site menu -->
-      <div>
-        <h3 class="font-bold mb-4">Меню сайта</h3>
-        <ul>
-          <li>Оплата и доставка</li>
-          <li>О нас</li>
-          <li>Услуги</li>
-          <li>Каталог</li>
-          <li>Блог</li>
-          <li>FAQ</li>
-          <li>Отзывы</li>
-          <li>Контакты</li>
-        </ul>
-      </div>
-
-      <!-- Blocks with categories -->
-      <div>
-        <h3 class="font-bold mb-4">Плазменная резка</h3>
-        <ul>
-          <li>HYPER</li>
-          <li>Thermal Dynamics</li>
-          <li>Lincoln Electric</li>
-          <li>Kjellberg</li>
-          <li>ESAB</li>
-          <li>Trafilmet</li>
-          <li>Плазматроны и кабели к резакам</li>
-          <li>CEBORA</li>
-          <li>AJAN</li>
-          <li>Сварог</li>
-          <li>XF</li>
-          <li>CUT 300 / CUT 400</li>
-          <li>VGX</li>
-          <li>ST120 (STM120)</li>
-          <li>YK</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Лазерная резка</h3>
-        <ul>
-          <li>Bystronic</li>
-          <li>Precitec</li>
-          <li>Trumpf</li>
-          <li>Средства очистки оптики, аксессуары</li>
-          <li>Защитные стекла и линзы</li>
-          <li>AMADA</li>
-          <li>Raytools</li>
-          <li>HANKWANG</li>
-          <li>Очки</li>
-          <li>Hans laser</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Газовая резка</h3>
-        <ul>
-          <li>Harris</li>
-          <li>KOIKE</li>
-          <li>Messer</li>
-          <li>G03</li>
-          <li>ESAB</li>
-          <li>PNME</li>
-          <li>GK3</li>
-          <li>TANAKA</li>
-          <li>GCE</li>
-          <li>TECNA</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Расходные материалы для сварки</h3>
-        <ul>
-          <li>Расходные материалы для сварки</li>
-          <li>Наконечники для автоматической сварки (тракторов)</li>
-          <li>TECNA</li>
-          <li>Fronius</li>
-          <li>Abicor Binzel</li>
-          <li>Наконечники (Abicor, fronius, kempi, esab, panasonic и др.)</li>
-          <li>Сварочные горелки Abicor</li>
-          <li>Сварочные горелки Fronius</li>
-          <li>Газовые сопла (Abicor, fronius)</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Гидроабразивная резка</h3>
-        <ul>
-          <li>Фокусные трубки</li>
-          <li>Гранатовый песок</li>
-          <li>Рубиновые сопла</li>
-        </ul>
-      </div>
-
-      <!-- Policy and other information -->
-      <div>
-        <h3 class="font-bold mb-4">Политика и информация</h3>
-        <ul>
-          <li>Политика конфиденциальности</li>
-          <li>Условия использования</li>
-          <li>Оферта</li>
-          <li>Информация о доставке</li>
-        </ul>
+      <div class="w-full py-4 border-t border-[#ebebeb] opacity-20"></div>
+      <div class="w-full">
+        <div class="flex gap-4">
+          <p class="text-xs text-[#67747F]">{{ legalText }}</p>
+          <div class="flex gap-4 p-4">
+            <a
+              v-for="link in legalLinks"
+              :key="link.id"
+              :href="link.url"
+              class="text-white hover:text-main"
+              >{{ link.text }}</a
+            >
+          </div>
+        </div>
       </div>
     </div>
   </footer>
 </template>
 
 <script>
-import MenuLink from './MenuLink.vue';
-
 export default {
-  name: 'Footer',
-  components: {
-    MenuLink,
-  },
+  name: "Footer",
   data() {
     return {
-      menuItems: [
+      legalText:
+        "ПРАВОВАЯ ИНФОРМАЦИЯ. Hypertherm®, Powermax®, HyPerformance®, HPR® – зарегистрированные торговые марки компании Hypertherm, Inc. Все торговые марки, приведенные на сайте, являются собственностью соответствующих компаний, и упоминаются исключительно для справок. Компания Plasma Laser никоим образом не связана с вышеназванным производителем и зарегистрированными им товарными знаками.",
+      legalLinks: [
+        { id: 1, text: "Оферта", url: "#" },
+        { id: 2, text: "Конфиденциальность", url: "#" },
+      ],
+      contacts: [
         {
-          label: 'Меню',
+          icons: ["whatsapp", "phone"],
+          iconAlt: "Телефон",
+          type: "a",
+          href: "tel:+79046422101",
+          text: "+7(904)-642-21-01",
+        },
+        {
+          icons: ["email"],
+          iconAlt: "Email",
+          type: "a",
+          href: "mailto:n_yatsko@bk.ru",
+          text: "n_yatsko@bk.ru",
+        },
+        {
+          icons: ["location"],
+          iconAlt: "Адрес",
+          type: "address",
+          text: "г. Санкт-Петербург, пр.Королева, д. 22 корп 1",
+        },
+      ],
+      paymentTitle: "Принимаем к оплате",
+      paymentMethods: [
+        { id: 1, name: "MasterCard", icon: "mastercard" },
+        { id: 2, name: "Visa", icon: "visa" },
+        { id: 3, name: "МИР", icon: "mir" },
+      ],
+      copyright: "© 2023 «PlasmaLaser». Все права защищены.",
+      developerText: "Разработка сайта",
+      developerLogoPath: "/images/Developer.svg",
+      developerName: "Markitties - Digital агентство полного цикла",
+
+      menu: [
+        {
+          title: "Меню сайта",
           items: [
-            { label: 'Плазменная резка', items: ['Hyder', 'Thermal Dynamics'] },
-            { label: 'Лазерная резка', items: ['Вырезка', 'Травиление'] },
-            // Другие подпункты меню
+            [
+              { id: 1, text: "Оплата и доставка", url: "#" },
+              { id: 2, text: "О нас", url: "#" },
+              { id: 3, text: "Услуги", url: "#" },
+              { id: 4, text: "Каталог", url: "#" },
+              { id: 5, text: "Блог", url: "#" },
+              { id: 6, text: "FAQ", url: "#" },
+              { id: 7, text: "Отзывы", url: "#" },
+              { id: 8, text: "Контакты", url: "#" },
+            ],
           ],
         },
         {
-          label: 'Оплата и доставка',
-          items: [], // Если нет подпунктов
+          title: "Плазменная резка",
+          items: [
+            [
+              { id: 1, text: "HYPER", url: "#" },
+              { id: 2, text: "Thermal Dynamics", url: "#" },
+              { id: 3, text: "Lincoln Electric", url: "#" },
+              { id: 4, text: "Kjellberg", url: "#" },
+              { id: 5, text: "ESAB", url: "#" },
+              { id: 6, text: "Trafimet", url: "#" },
+              { id: 7, text: "Плазматроны и кабели к резакам", url: "#" },
+            ],
+            [
+              { id: 8, text: "CEBORA", url: "#" },
+              { id: 9, text: "AJAN", url: "#" },
+              { id: 10, text: "Сварог", url: "#" },
+              { id: 11, text: "XF", url: "#" },
+              { id: 12, text: "CUT 300 / CUT 400", url: "#" },
+              { id: 13, text: "YGX", url: "#" },
+              { id: 14, text: "ST120 (STM120)", url: "#" },
+              { id: 15, text: "YK", url: "#" },
+            ],
+          ],
         },
-        // Другие пункты меню
+        {
+          title: "Лазерная резка",
+          items: [
+            [
+              { id: 1, text: "Bystronic", url: "#" },
+              { id: 2, text: "Precetec", url: "#" },
+              { id: 3, text: "Trumpf", url: "#" },
+              { id: 4, text: "Средства очистки оптики, аксессуары", url: "#" },
+              { id: 5, text: "Защитные стекла и линзы", url: "#" },
+            ],
+            [
+              { id: 6, text: "AMADA", url: "#" },
+              { id: 7, text: "Raytools", url: "#" },
+              { id: 8, text: "HANKWANG", url: "#" },
+              { id: 9, text: "Очки", url: "#" },
+              { id: 10, text: "Hans laser", url: "#" },
+            ],
+          ],
+        },
+        {
+          title: "Газовая резка",
+          items: [
+            [
+              { id: 1, text: "Harris", url: "#" },
+              { id: 2, text: "KOIKE", url: "#" },
+              { id: 3, text: "Messer", url: "#" },
+              { id: 4, text: "G03", url: "#" },
+              { id: 5, text: "ESAB", url: "#" },
+            ],
+            [
+              { id: 6, text: "PNME", url: "#" },
+              { id: 7, text: "GKZ", url: "#" },
+              { id: 8, text: "TANAKA", url: "#" },
+              { id: 9, text: "GCE", url: "#" },
+              { id: 10, text: "TECNA", url: "#" },
+            ],
+          ],
+        },
+        {
+          title: "Расходные материалы для сварки",
+          items: [
+            [
+              { id: 1, text: "Расходные материалы для сварки", url: "#" },
+              {
+                id: 2,
+                text: "Наконечники для автоматической сварки (тракторов)",
+                url: "#",
+              },
+              { id: 3, text: "TECNA", url: "#" },
+              { id: 4, text: "Fronius", url: "#" },
+              { id: 5, text: "Abicor Binzel", url: "#" },
+              {
+                id: 6,
+                text: "Наконечники (Abicor, fronius, kempi, esab, panasonic и др.)",
+                url: "#",
+              },
+              { id: 7, text: "Сварочные горелки Abicor", url: "#" },
+              { id: 8, text: "Сварочные горелки Fronius", url: "#" },
+              { id: 9, text: "Газовые сопла (Abicor, fronius)", url: "#" },
+            ],
+          ],
+        },
+        {
+          title: "Гидроабразивная резка",
+          items: [
+            [
+              { id: 1, text: "Фокусные трубки", url: "#" },
+              { id: 2, text: "Гранатовый песок", url: "#" },
+              { id: 3, text: "Рубиновые сопла", url: "#" },
+            ],
+          ],
+        },
       ],
     };
   },
 };
 </script>
+
+<style scoped></style>
